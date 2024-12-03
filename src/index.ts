@@ -1,6 +1,6 @@
 import { CronJob } from 'cron';
 import * as dotenv from 'dotenv';
-import * as process from 'process';
+import process from 'process';
 import { MainController } from './main.controller';
 import { TestFeedService } from './services/test-feed.service';
 import { TestMusicService } from './services/test-music.service';

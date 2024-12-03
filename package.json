@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && npm run start:pm2",
+    "build": "npx tsc",
+    "start:pm2": "pm2 start build/index.js --name hourly-song-bot",
+    "stop:pm2": "pm2 delete hourly-song-bot"
   },
   "keywords": [],
   "author": "",
