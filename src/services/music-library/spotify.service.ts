@@ -51,32 +51,33 @@ export class SpotifyService implements MusicLibraryService {
       throw new Error('No token found');
     }
 
-    // TODO: consider randomizing from a list of genres to get a finer selection
-    const randomOffset = Math.floor(Math.random() * 1000);
+    const offset = Math.floor(Math.random() * 950);
     const genre = genres[Math.floor(Math.random() * genres.length)];
 
     const query = {
       q: `genre:"${genre}"`,
       type: 'track',
       limit: 50,
-      offset: randomOffset,
+      offset,
     };
 
-    const response = await fetch(
-      `https://api.spotify.com/v1/search?` + querystring.stringify(query),
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `${this.token.tokenType} ${this.token.accessToken}`,
-        },
-      }
-    );
+    const url =
+      `https://api.spotify.com/v1/search?` + querystring.stringify(query);
+
+    console.log(`GET ${url}`);
+
+    const response = await fetch(url, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `${this.token.tokenType} ${this.token.accessToken}`,
+      },
+    });
 
     const data = await response.json();
 
     if (!data.tracks) {
-      console.log({ query, data });
+      console.error({ query, data });
       throw new Error('No tracks found');
     }
 
@@ -85,7 +86,7 @@ export class SpotifyService implements MusicLibraryService {
     ) as SpotifyTrack[];
 
     if (allowedTracks.length === 0) {
-      console.log({ query, data });
+      console.error({ query, data });
       throw new Error('No allowed tracks found');
     }
 
