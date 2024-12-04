@@ -44,8 +44,7 @@ export class BskyService implements SocialFeedService {
       });
     }
 
-    console.log(message);
-    console.log(coverUrl);
+    console.log(`POST ${message}`);
 
     await session.logout();
   }

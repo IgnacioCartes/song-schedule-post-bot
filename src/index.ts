@@ -18,7 +18,7 @@ const controller = new MainController(
   })
 );
 
-if (process.env.IS_CRON === 'true') {
+if (process.env.USE_CRON_JOB === 'true') {
   const job = new CronJob('0 * * * *', () => controller.execute(), null, true);
   job.start();
 
