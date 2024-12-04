@@ -5,6 +5,8 @@
   "scripts": {
     "start": "npm run build && npm run start:pm2",
     "build": "npx tsc",
+    "watch": "npx tsc --watch",
+    "build:dev": "npm run build && node build/index.js",
     "start:pm2": "pm2 start build/index.js --name hourly-song-bot",
     "stop:pm2": "pm2 delete hourly-song-bot"
   },
@@ -17,5 +19,8 @@
     "cron": "^3.2.1",
     "dotenv": "^16.4.7",
     "process": "^0.11.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
   }
 }

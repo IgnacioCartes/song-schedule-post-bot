@@ -1,26 +1,27 @@
 import { CronJob } from 'cron';
 import * as dotenv from 'dotenv';
-import process from 'process';
 import { MainController } from './main.controller';
+import { SpotifyService } from './services/spotify.service';
 import { TestFeedService } from './services/test-feed.service';
-import { TestMusicService } from './services/test-music.service';
 
 dotenv.config();
 
 const controller = new MainController(
-  new TestMusicService(),
+  new SpotifyService({
+    clientId: process.env.SPOTIFY_CLIENT_ID!,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
+  }),
   new TestFeedService()
 );
 
-const job = new CronJob(
-  process.env.CRON_EXPRESSION,
-  () => controller.execute(),
-  null,
-  true
-);
-job.start();
+if (process.env.IS_CRON === 'true') {
+  const job = new CronJob('0 * * * *', () => controller.execute(), null, true);
+  job.start();
 
-process.on('SIGINT', () => {
-  job.stop();
-  process.exit(0);
-});
+  process.on('SIGINT', () => {
+    job.stop();
+    process.exit(0);
+  });
+} else {
+  controller.execute();
+}

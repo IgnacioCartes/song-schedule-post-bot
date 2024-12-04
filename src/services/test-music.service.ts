@@ -10,6 +10,7 @@ export class TestMusicService implements MusicLibraryService {
       artist: 'Test Artist',
       year: '2023',
       link: 'https://example.com/test-song',
+      coverUrl: 'https://example.com/test-song-cover.jpg',
     };
   }
 }
