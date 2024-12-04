@@ -11,7 +11,8 @@ export class MainController {
     const song = await this.musicLibraryService.getRandomTrack();
 
     await this.feedService.post(
-      `🎵 ${song.title} by ${song.artist} (${song.year})\n${song.link}`
+      `🎵 ${song.title} by ${song.artist} (${song.year})\n${song.link}`,
+      song.coverUrl
     );
   }
 }

@@ -1,7 +1,7 @@
 import { CronJob } from 'cron';
 import * as dotenv from 'dotenv';
 import { MainController } from './main.controller';
-import { SpotifyService } from './services/spotify.service';
+import { SpotifyService } from './services/music-library/spotify.service';
 import { TestFeedService } from './services/test-feed.service';
 
 dotenv.config();

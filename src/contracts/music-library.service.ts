@@ -7,5 +7,6 @@ export interface TrackInfo {
   artist: string;
   year: string;
   link: string;
+  genre: string | null;
   coverUrl: string;
 }
