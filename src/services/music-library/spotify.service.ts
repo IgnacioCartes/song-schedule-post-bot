@@ -37,9 +37,9 @@ const genres = [
 export class SpotifyService implements MusicLibraryService {
   private token: SpotifyToken | null = {
     accessToken:
-      'BQAQmYkO6mKcjs1hOak6DOPPyPWLUvH5SezHHryOLN5MapLUdYYQdXUvXop6bEsUVrNtdzLlYJBGX3OzNJ6_lDbHwMVGmD1pDcAYKiOVIFCE2kVZlO4',
+      'BQCjXBczOsLtL-n6V6C9qzAnqayZZRRGzccIHLXs175frMq0TI6RIbcbaPOKwmmGGuPf1gUOfYW9KxR2CdCKfMmOkxmxAvweHdjVGVVtMrcJPFh6Hf4',
     tokenType: 'Bearer',
-    expiresAt: new Date('2024-12-04T18:33:26.510Z'),
+    expiresAt: new Date('2024-12-04T19:37:48.355Z'),
   };
 
   constructor(private readonly config: SpotifyConfig) {}

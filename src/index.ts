@@ -2,7 +2,7 @@ import { CronJob } from 'cron';
 import * as dotenv from 'dotenv';
 import { MainController } from './main.controller';
 import { SpotifyService } from './services/music-library/spotify.service';
-import { TestFeedService } from './services/test-feed.service';
+import { BskyService } from './services/social-feed/bsky.service';
 
 dotenv.config();
 
@@ -11,7 +11,11 @@ const controller = new MainController(
     clientId: process.env.SPOTIFY_CLIENT_ID!,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
   }),
-  new TestFeedService()
+  new BskyService({
+    service: process.env.BSKY_SERVICE!,
+    username: process.env.BSKY_USERNAME!,
+    password: process.env.BSKY_PASSWORD!,
+  })
 );
 
 if (process.env.IS_CRON === 'true') {
