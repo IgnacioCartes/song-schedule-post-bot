@@ -51,13 +51,14 @@ export class SpotifyService implements MusicLibraryService {
       throw new Error('No token found');
     }
 
-    const offset = Math.floor(Math.random() * 950);
+    const offset = Math.floor(Math.random() * 1000);
     const genre = genres[Math.floor(Math.random() * genres.length)];
+    const char = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 
     const query = {
-      q: `genre:"${genre}"`,
+      q: `genre:"${genre}" ${char}`,
       type: 'track',
-      limit: 50,
+      limit: 1,
       offset,
     };
 
